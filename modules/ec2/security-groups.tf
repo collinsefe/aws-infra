@@ -50,7 +50,7 @@ resource "aws_security_group" "app_security_group" {
 
   ingress {
     description = "Allow Traffic for Node App"
-    from_port   = 
+    from_port   = 8081
     to_port     = 8085
     protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]

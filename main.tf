@@ -20,21 +20,6 @@ module "ec2" {
 }
 
 
-# module "db" {
-#   source = "./modules/db"
-
-#   vpc_id             = module.vpc.this_vpc_id
-#   my_private_subnets      = module.vpc.private_subnets
-#   my_private_subnet_cidrs = local.private_subnet_cidrs
-
-#   db_az            = local.availability_zones[0]
-#   db_name          = "ccDatabaseInstance"
-#   db_user_name     = var.db_user_name
-#   db_user_password = var.db_user_password
-# }
-
-
-
 module "ecrDevRepo" {
   source        = "./modules/ecr"
   ecr_repo_name = "${local.ecr_repo_name}-dev"
