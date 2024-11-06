@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     environment {
-        AWS_CREDENTIALS = 'aws-credentials-id'  // Replace with your AWS credentials ID in Jenkins
-        TF_VAR_ami_id = 'ami-0acc77abdfc7ed5a6' // Update as needed
-        TF_VAR_instance_type = 't2.medium'      // Update as needed
-        TF_VAR_key_name = 'my-key-pair'         // Update as needed
-        TF_VAR_artifact_bucket_name = 'my-artifact-bucket' // S3 bucket name
+        AWS_CREDENTIALS = 'aws-credentials'  
+        TF_VAR_ami_id = 'ami-0acc77abdfc7ed5a6'
+        TF_VAR_instance_type = 't2.medium'      
+        TF_VAR_key_name = 'collinsefe'       
+        TF_VAR_artifact_bucket_name = 'my-artifact-bucket' 
     }
 
     stages {
@@ -27,7 +27,6 @@ pipeline {
 
         stage('Initialize Terraform') {
             steps {
-                // Initialize the Terraform project
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
                     sh 'terraform init -reconfigure'
                 }
@@ -36,7 +35,6 @@ pipeline {
 
         stage('Plan Infrastructure') {
             steps {
-                // Generate and review the plan for deploying resources
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
                     sh 'terraform plan -out=tfplan'
                 }
