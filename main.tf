@@ -19,7 +19,6 @@ module "ec2" {
   user_data = local.user_data
 }
 
-
 module "ecrDevRepo" {
   source        = "./modules/ecr"
   ecr_repo_name = "${local.ecr_repo_name}-dev"

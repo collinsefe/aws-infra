@@ -23,6 +23,14 @@ resource "aws_security_group" "app_security_group" {
     protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  
+   ingress {
+    description = "Allow HTTP Traffic"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   ingress {
     description = "Allow 8080 Traffic for Jenkins Server"
@@ -36,14 +44,6 @@ resource "aws_security_group" "app_security_group" {
     description = "Allow 3000 Traffic for Medical App"
     from_port   = 3000
     to_port     = 3000
-    protocol    = "TCP"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "Allow Traffic for Node App"
-    from_port   = 8081
-    to_port     = 8085
     protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]
   }
