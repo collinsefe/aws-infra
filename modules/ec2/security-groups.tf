@@ -2,7 +2,7 @@ resource "aws_security_group" "app_security_group" {
   name        = "app_security_group"
   description = "Allows Port SSH and HTTP Traffic"
 
-  vpc_id = aws_default_vpc.this.id
+  vpc_id = aws_default_vpc.default_vpc.id
 
   tags = {
     Name = "allow_tls"
@@ -41,9 +41,17 @@ resource "aws_security_group" "app_security_group" {
   }
 
   ingress {
-    description = "Allow 8081 Traffic for Node App"
+    description = "Allow Traffic for Node App"
     from_port   = 8081
-    to_port     = 8081
+    to_port     = 8085
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Allow Traffic for Node App"
+    from_port   = 
+    to_port     = 8085
     protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]
   }
