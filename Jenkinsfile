@@ -36,7 +36,7 @@ pipeline {
         stage('Plan Infrastructure') {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
-                    sh 'terraform plan -out=tfplan'
+                    sh 'terraform plan -var-file terraform.tfvars -out=tfplan'
                 }
             }
         }
@@ -45,7 +45,7 @@ pipeline {
             steps {
                 // Apply the Terraform plan
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
-                    // sh 'terraform apply -auto-approve tfplan'
+                    // sh 'terraform apply -var-file terraform.tfvars -auto-approve tfplan'
                 }
             }
         }
