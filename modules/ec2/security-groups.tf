@@ -1,8 +1,7 @@
 resource "aws_security_group" "app_security_group" {
   name        = "app_security_group"
   description = "Allows Port SSH and HTTP Traffic"
-
-  vpc_id = aws_default_vpc.this.id
+  vpc_id = aws_default_vpc.default_vpc.id
 
   tags = {
     Name = "allow_tls"

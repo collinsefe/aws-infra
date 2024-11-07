@@ -13,3 +13,9 @@ variable "user_data" {
 variable "ami_id" {
   type        = string
 }
+
+variable "associate_public_ip_address" {
+  type        = bool
+}
+
+

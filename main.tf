@@ -17,6 +17,8 @@ module "ec2" {
   key_name      = local.key_name
   # subnet_id     = var.subnet_id
   user_data = local.user_data
+  associate_public_ip_address = true
+
 }
 
 
