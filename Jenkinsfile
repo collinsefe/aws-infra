@@ -36,22 +36,22 @@ pipeline {
         stage('Plan Infrastructure') {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
-                    sh 'terraform plan -var-file terraform.tfvars -out=tfplan'
+                    sh 'terraform plan -var-file terraform.tfvars'
                 }
             }
         }
 
-        stage('Apply Infrastructure') {
+        stage('Destroy Infrastructure') {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS]]) {
-                    sh 'terraform apply -var-file terraform.tfvars -auto-approve tfplan'
+                    sh 'terraform destroy -auto-approve'
                 }
             }
         }
 
         stage('Post Deployment Steps') {
             steps {
-                echo "Terraform deployment complete."
+                echo "Terraform destruction has completed successfully"
             }
         }
     }
@@ -62,7 +62,7 @@ pipeline {
             deleteDir() 
         }
         success {
-            echo 'Infrastructure has been successfully deployed!'
+            echo 'Infrastructure has been successfully destroyed!'
         }
         failure {
             echo 'Deployment failed. Please check the logs for more details.'

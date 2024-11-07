@@ -16,7 +16,7 @@ module "ec2" {
   instance_type = local.instance_type
   key_name      = local.key_name
   # subnet_id     = var.subnet_id
-  user_data = local.user_data
+  user_data                   = local.user_data
   associate_public_ip_address = true
 
 }
@@ -38,7 +38,7 @@ module "ecsTestCluster" {
   app_cluster_name   = "${local.app_cluster_name}-test"
   availability_zones = local.availability_zones
 
-  app_task_family              = "app-task-test" 
+  app_task_family              = "app-task-test"
   ecr_repo_url                 = module.ecrTestRepo.repository_url
   container_port               = local.container_port
   app_task_name                = "${local.app_task_name}-test"
@@ -55,7 +55,7 @@ module "ecsDevCluster" {
   app_cluster_name   = "${local.app_cluster_name}-dev"
   availability_zones = local.availability_zones
 
-  app_task_family              = "app-task-dev" 
+  app_task_family              = "app-task-dev"
   ecr_repo_url                 = module.ecrDevRepo.repository_url
   container_port               = local.container_port
   app_task_name                = "${local.app_task_name}-dev"
@@ -68,7 +68,7 @@ module "ecsDevCluster" {
 
 
 module "s3" {
-  source      = "./modules/s3"
+  source               = "./modules/s3"
   artifact_bucket_name = local.artifact_bucket_name
 }
 
