@@ -22,7 +22,7 @@ resource "aws_ecs_task_definition" "app_task" {
   [
     {
       "name": "${var.app_task_name}",
-      "image": "${var.ecr_repo_url}",
+      "image": "${var.ecr_repo_url}:${var.tag}", 
       "essential": true,
       "portMappings": [
         {

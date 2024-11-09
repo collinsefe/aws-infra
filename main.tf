@@ -47,6 +47,7 @@ module "ecsTestCluster" {
   application_load_balancer_name = "${local.application_load_balancer_name}-test"
   target_group_name              = "${local.target_group_name}-test"
   app_service_name               = "${local.app_service_name}-test"
+  tag                            = "test"
 }
 
 module "ecsDevCluster" {
@@ -64,6 +65,7 @@ module "ecsDevCluster" {
   application_load_balancer_name = "${local.application_load_balancer_name}-dev"
   target_group_name              = "${local.target_group_name}-dev"
   app_service_name               = "${local.app_service_name}-dev"
+  tag                            = "dev"
 }
 
 
