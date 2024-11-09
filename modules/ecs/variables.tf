@@ -48,6 +48,14 @@ variable "app_service_name" {
   type        = string
 }
 
+
+
+variable "tag" {
+  description = "Docker image tag"
+  type        = string
+}
+
+
 # variable "vpc_id" {
 #   description = "VPC ID"
 #   type        = string
